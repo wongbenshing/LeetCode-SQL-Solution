@@ -1,0 +1,17 @@
+# Write your MySQL query statement below
+
+# SELECT
+#    IFNULL(    # IFNUL - It is a way to solve the NULL problem
+#        (
+#            SELECT DISTINCT Salary  
+#            FROM Employee
+#            ORDER BY Salary DESC
+#            LIMIT 1 OFFSET 1),   
+#               # LIMIT clause to get the second highest salary (Could be many rows with the 2nd highest value)
+#    NULL) AS SecondHighestSalary;  # Use 'AS' to change attribute name
+
+# Other Method
+
+SELECT MAX(Salary) AS SecondHighestSalary
+FROM Employee
+WHERE Salary NOT IN (SELECT MAX(Salary) FROM Employee)
