@@ -1,0 +1,9 @@
+# Write your MySQL query statement below
+SELECT
+  Score,
+  (SELECT count(*) FROM (SELECT distinct Score s FROM Scores) tmp WHERE s >= Score) AS Rank
+FROM Scores
+ORDER BY Score desc
+
+# Use [DISTINCT] to Rank the different score values
+# More faster: MySQL could make tmp a temporary table and uses it for every outer Score.
